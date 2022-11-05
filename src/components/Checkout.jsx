@@ -30,10 +30,12 @@ const Checkout = () => {
     });
 
     useEffect(() => {
-        setOrderDetails({
-            ...orderDetails,
-            items: cartItems,
-            itemsTotal: itemsTotal
+        setOrderDetails((prevState) => {
+            return {
+                ...prevState,
+                items: cartItems,
+                itemsTotal: itemsTotal
+            }
         });
     }, [itemsTotal, cartItems]);
 
@@ -78,16 +80,29 @@ const Checkout = () => {
     };
 
     useEffect(() => {
-        setOrderDetails({
-            ...orderDetails,
-            totalPayable: orderDetails.itemsTotal - orderDetails.discount
-        })
-    }, [orderDetails.itemsTotal, orderDetails.discount]);
+        setOrderDetails((prevState) => {
+            return{
+                ...prevState,
+                totalPayable: prevState.itemsTotal - prevState.discount
+           }
+        });
+    }, [orderDetails.discount, orderDetails.itemsTotal]);
 
     const placeOrder = () => {
         dispatch(addOrders(orderDetails));
         dispatch(setItemsTotal(0));
+        setOrderDetails((prevState) => {
+            return{
+                ...prevState,
+                customerId: '',
+                customer: '',
+                items: [],
+                discount: 0,
+                paymentMethod: ''
+           }
+        });
         dispatch(clearCart());
+        dispatch(toggleCheckout(false));
         navigate('/orders');
     };
 

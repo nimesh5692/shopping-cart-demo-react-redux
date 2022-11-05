@@ -31,22 +31,26 @@ const Orders = () => {
                                                 <tr key={index}>
                                                     <td>{index + 1}</td>
                                                     <td>{order.customer}</td>
-                                                    <td>{
-                                                        order.items.map((item, i) => {
-                                                            return (
-                                                                <div className="order_items">
-                                                                    <figure className="order_item_img">
-                                                                        <img src={item.img} alt="product-img" />
-                                                                    </figure>
-                                                                    <div className="order_item_info">
-                                                                        <b>{item.title}</b>
-                                                                        <br />
-                                                                        &times; <b>{item.quantity}</b>
+                                                    <td>
+                                                        <div className="order_items_details">
+                                                        {
+                                                            order.items.map((item, itemIndex) => {
+                                                                return (
+                                                                    <div className="order_item" key={`${index}_${itemIndex}`}>
+                                                                        <figure className="order_item_img">
+                                                                            <img src={item.img} alt="product-img" />
+                                                                        </figure>
+                                                                        <div className="order_item_info">
+                                                                            <b>{item.title}</b>
+                                                                            <br />
+                                                                            &times; <b>{item.quantity}</b>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            )
-                                                        })
-                                                    }</td>
+                                                                )
+                                                            })
+                                                        }
+                                                        </div>
+                                                    </td>
                                                     <td>{order.paymentMethod}</td>
                                                     <td className="text-right">{order.itemsTotal}</td>
                                                     <td className="text-right">{order.discount}</td>

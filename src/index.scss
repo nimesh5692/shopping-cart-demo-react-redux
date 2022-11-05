@@ -7,6 +7,7 @@ $body-color: #f5f9fc;
 $text-light: #ebedf0;
 $text-dark: #242526;
 $primary-color: #3d8842;
+$boarder-color: #ddd;
 $head-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 $foot-shadow: 0px -5px 15px rgba(0, 0, 0, 0.5);
 $card-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -55,7 +56,7 @@ input {
     padding: 8px 10px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid $boarder-color;
     border-radius: 4px;
     box-sizing: border-box;
     font: inherit;
@@ -103,7 +104,7 @@ svg {
 }
 
 table, td, th {  
-    border: 1px solid #ddd;
+    border: 1px solid $boarder-color;
 }
 
 td {
@@ -236,7 +237,7 @@ th, td {
 
     .btn {
         background-color: $primary-color;
-        color: #ddd;
+        color: $boarder-color;
         width: 100%;
         margin-top: 1rem;
         padding: 0.6rem 0;
@@ -457,8 +458,18 @@ th, td {
 
 /*--====== Orders page ======--*/
 
-.order_items {
+.order_items_details {
+    display: flex;
+    flex-direction: column;
+}
+
+.order_item {
     display: inline-flex;
+    padding: 10px 0px;
+}
+
+.order_items_details .order_item:not(:last-child) {
+    border-bottom: 1px solid $boarder-color;
 }
 
 .order_item_img {
